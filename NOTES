@@ -1,0 +1,48 @@
+Overview and basic understanding of REACTJS and javascript ECMASCRIPT basics(ES6)
+----------------------------------------------------------------
+https://medium.com/m/global-identity?redirectUrl=https%3A%2F%2Fmedium.freecodecamp.org%2Flearning-react-roadmap-from-scratch-to-advanced-bff7735531b6
+>>> learn JSX(extended javascript) to use with react:https://reactjs.org/docs/introducing-jsx.html
+>>> https://reactjs.org/docs/hello-world.html
+
+
+Step 1: set up basic local environment
+-------
+https://reactjs.org/tutorial/tutorial.html#setup-for-the-tutorial
+>>>Learn about ES6 main features : https://hackernoon.com/es6-for-beginners-77bf34bec2d1(3 links)
+>>>what is npm: https://www.impressivewebs.com/npm-for-beginners-a-guide-for-front-end-developers/
+>>>what is npm video :https://www.youtube.com/watch?v=s70-Vsud9Vk
+
+Step 2: Create and edit first basic react project
+------
+start with 
+>>npm install
+>>npm create_react_app my_app
+>>npm start 
+
+This will start up a browser http://localhost:3000 with teh first and basi react page
+
+To get started, edit src/App.js and save to reload.
+
+Without having to restart, you wil instantly see the updates on the browser(http://localhost:3000)
+
+Step 3: basic tic tac toe page,
+--------
+Now to get started with basic tic tac toe page, follow "Set Up Option 2" on the link:
+ https://reactjs.org/tutorial/tutorial.html#setup-for-the-tutorial, (which was used above as well)
+
+Now if you run npm start in the project folder and open http://localhost:3000 in the browser,
+you should see an empty tic-tac-toe field.
+
+However, if teh page is already up and running, then you will see teh update dynamically. :)
+
+
+Explaining Code:
+----------------
+By inspecting the code(index.js), you’ll notice that we have three React components:
+
+Square
+Board
+Game
+
+The Square component renders a single <button> and the Board renders 9 squares.
+The Game component renders a board with placeholder values
