@@ -46,3 +46,203 @@ Game
 
 The Square component renders a single <button> and the Board renders 9 squares.
 The Game component renders a board with placeholder values
+
+Passing data from BOARD component to Square component:
+------------------------------------------------------
+In Board’s renderSquare method, change the code to pass a prop called value to the Square as below:
+
+        ********************
+class Board extends React.Component {
+  renderSquare(i) {
+    //return <Square />;//Update thsi line to dynamically insert data in Square component.
+    return<Square value={i} />;//In order to make this work.. you will have to update Square component's render() return.
+  }
+  .......
+        ********************
+
+  The value={i} in the above return statement will be retrieved in the Square component as this.props.value, as below,
+
+        ********************
+class Square extends React.Component {
+  render() {
+    return (
+      <button className="square">
+        {this.props.value}
+      </button>
+    );
+  }
+
+        ********************
+}
+
+
+Making an interactive component:
+--------------------------------
+
+Upto previous steps, we will be able to see the values passed from board, in each Square component of the board.
+Now, we will be working on making the square component , a button, which
+onClick , will open a alert window.
+
+class Square extends React.Component {
+ render() {
+   return (
+     <button className="square" onClick={() => alert('click')}>
+       {this.props.value}
+     </button>
+   );
+ }
+}
+
+
+Note:
+----
+Forgetting () => and writing onClick={alert('click')}
+is a common mistake, and would fire the alert every time the component re-renders.
+
+
+'state' of Components:
+----------------------
+
+As a next step, we want the Square component to “remember” that it got clicked,
+and fill it with an “X” mark. To “remember” things, components use state.
+
+ - React components can have state by setting this.state in their constructors.
+ - this.state should be considered as private to a React component that it’s defined in.
+ - Let’s store the current 'value' of the Square in this.state, and change it when the Square is clicked.
+
+ Steps to have a component state stored:
+ 1) Create a constructor for Square component as below,
+            *****************
+
+     class Square extends React.Component {
+       constructor(props) {
+         super(props);
+         this.state = {
+           value: null,
+         };
+       }
+        render() { ......
+
+            ******************
+    Note:
+    -----
+    In JavaScript classes, you need to always call super when defining the constructor of a subclass.
+    All React component classes that have a constructor should start it with a super(props) call.
+
+    Now we’ll change the Square’s render method to display the current state’s value when clicked:
+
+ 2) Update code to set state instead of generic alert calls, with below steps:
+    - Replace this.props.value with this.state.value inside the <button> tag.
+    - Replace the () => alert() event handler with () => this.setState({value: 'X'}).
+
+    The render() method os Square component will hence change to:
+
+        *******************
+     .......
+     render() {
+         return (
+           <button className="square"
+             onClick={() => this.setState({value: 'X'})} >
+             {this.state.value}
+           </button>
+         );
+       }
+      ..
+      }
+        *******************
+
+
+How to know the current state of each square in the board?
+----------------------------------------------------------
+In ticTacToe, in order to allow the second player, we need to know the value in the previous entry(in teh square)
+The only way to manage that would be to know the values in each square, as and when they are clicked.
+In this project, we crate an array for the Board component with 9 Square initially, all initialised to null.
+
+We can gradually populate the squared based on their index, as and when they are clicked.
+This way, we can keep track of squares that are already filled, along with their location(Index).
+
+1) Initialize the BOARD component with null Squares, hence, also need a state(eventualy a constructor as well)
+   variable to hold the array:
+    ************
+        class Board extends React.Component {
+          constructor(props) {
+            super(props);
+            this.state = { squares: Array(9).fill(null), };
+          }
+
+          renderSquare(i) {
+            ..........
+          }
+        }
+    ************
+ 2) with 1), the renderSquare method will also be updated as below:
+     ************
+        class Board extends React.Component {
+           constructor(props) {
+                   super(props);
+                   this.state = { squares: Array(9).fill(null), };
+           }
+
+
+          renderSquare(i) {
+            //return <Square />;//Update thsi line to dynamically insert data in Square component.
+            //return<Square value={i} />;//In order to make this work.. you will have to update Square component's render() return.
+            return<Square value={this.state.squares[i]} />;
+          }
+          render() {
+          .......
+      ************
+
+
+.....
+
+Which player is next:
+--------------------
+
+We replace the entire Square Component with a function Square in order to manage states efficiently..
+As an effect, we will now have props over this.props, in the Square function
+
+
+Declaring a winner:
+-------------------
+1)
+Now that we show which player’s turn is next, we should also show when the game is won
+and there are no more turns to make.
+We can determine a winner by adding this helper function(calculateWinner()) defined in index.js file:.
+Once defined, this method can be called within the BOARD's render() method to verify if the user is winner
+
+    ************
+
+    render() {
+        const winner = calculateWinner(this.state.squares);
+        let status;
+        if (winner) {
+          status = 'Winner: ' + winner;
+        } else {
+          status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
+
+        return (
+          // the rest has not changed
+          ................
+
+    ************
+
+
+ 2) Stop allowing entry into squares if already found a winner:
+ We can now change the Board’s handleClick function to return early by ignoring a
+ click if someone has won the game or if a Square is already filled:
+
+ To do this, enter the below code within the handleClick() method of the BOARD component:
+    *****************
+
+    if (calculateWinner(squares) || squares[i]) {
+          return;
+        }
+
+    *****************
+
+
+    THATS IT. TIC TAC TOE, is now ready to go
+
+    YIPPEEEEEEEEEEEEEEEEEEEEEEEEEEE
