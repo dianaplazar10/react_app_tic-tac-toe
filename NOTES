@@ -19,7 +19,7 @@ start with
 >>npm create_react_app my_app
 >>npm start 
 
-This will start up a browser http://localhost:3000 with teh first and basi react page
+This will start up a browser http://localhost:3000 with the first and basic react page
 
 To get started, edit src/App.js and save to reload.
 
@@ -38,7 +38,7 @@ However, if teh page is already up and running, then you will see teh update dyn
 
 Explaining Code:
 ----------------
-By inspecting the code(index.js), you’ll notice that we have three React components:
+By inspecting the code(index.js), youâ€™ll notice that we have three React components:
 
 Square
 Board
@@ -49,7 +49,7 @@ The Game component renders a board with placeholder values
 
 Passing data from BOARD component to Square component:
 ------------------------------------------------------
-In Board’s renderSquare method, change the code to pass a prop called value to the Square as below:
+In Boardâ€™s renderSquare method, change the code to pass a prop called value to the Square as below:
 
         ********************
 class Board extends React.Component {
@@ -103,12 +103,12 @@ is a common mistake, and would fire the alert every time the component re-render
 'state' of Components:
 ----------------------
 
-As a next step, we want the Square component to “remember” that it got clicked,
-and fill it with an “X” mark. To “remember” things, components use state.
+As a next step, we want the Square component to â€œrememberâ€� that it got clicked,
+and fill it with an â€œXâ€� mark. To â€œrememberâ€� things, components use state.
 
  - React components can have state by setting this.state in their constructors.
- - this.state should be considered as private to a React component that it’s defined in.
- - Let’s store the current 'value' of the Square in this.state, and change it when the Square is clicked.
+ - this.state should be considered as private to a React component that itâ€™s defined in.
+ - Letâ€™s store the current 'value' of the Square in this.state, and change it when the Square is clicked.
 
  Steps to have a component state stored:
  1) Create a constructor for Square component as below,
@@ -129,7 +129,7 @@ and fill it with an “X” mark. To “remember” things, components use state
     In JavaScript classes, you need to always call super when defining the constructor of a subclass.
     All React component classes that have a constructor should start it with a super(props) call.
 
-    Now we’ll change the Square’s render method to display the current state’s value when clicked:
+    Now weâ€™ll change the Squareâ€™s render method to display the current stateâ€™s value when clicked:
 
  2) Update code to set state instead of generic alert calls, with below steps:
     - Replace this.props.value with this.state.value inside the <button> tag.
@@ -206,7 +206,7 @@ As an effect, we will now have props over this.props, in the Square function
 Declaring a winner:
 -------------------
 1)
-Now that we show which player’s turn is next, we should also show when the game is won
+Now that we show which playerâ€™s turn is next, we should also show when the game is won
 and there are no more turns to make.
 We can determine a winner by adding this helper function(calculateWinner()) defined in index.js file:.
 Once defined, this method can be called within the BOARD's render() method to verify if the user is winner
@@ -230,7 +230,7 @@ Once defined, this method can be called within the BOARD's render() method to ve
 
 
  2) Stop allowing entry into squares if already found a winner:
- We can now change the Board’s handleClick function to return early by ignoring a
+ We can now change the Boardâ€™s handleClick function to return early by ignoring a
  click if someone has won the game or if a Square is already filled:
 
  To do this, enter the below code within the handleClick() method of the BOARD component:
