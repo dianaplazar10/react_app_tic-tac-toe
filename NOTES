@@ -103,15 +103,16 @@ is a common mistake, and would fire the alert every time the component re-render
 'state' of Components:
 ----------------------
 
-As a next step, we want the Square component to â€œrememberâ€� that it got clicked,
-and fill it with an â€œXâ€� mark. To â€œrememberâ€� things, components use state.
+As a next step, we want the Square component to remember that it got clicked,
+and fill it with an 'X' mark. To remember things, components use state.
 
  - React components can have state by setting this.state in their constructors.
- - this.state should be considered as private to a React component that itâ€™s defined in.
- - Letâ€™s store the current 'value' of the Square in this.state, and change it when the Square is clicked.
+ - this.state should be considered as private to a React component that it's defined in.
+ - Let's store the current 'value' of the Square in this.state, and change it when the Square is clicked.
 
  Steps to have a component state stored:
- 1) Create a constructor for Square component as below,
+ 1) -Create a constructor for Square component as below,
+ 	-Define "this.state=..." within the constructor, as below
             *****************
 
      class Square extends React.Component {
@@ -129,7 +130,7 @@ and fill it with an â€œXâ€� mark. To â€œrememberâ€� things, co
     In JavaScript classes, you need to always call super when defining the constructor of a subclass.
     All React component classes that have a constructor should start it with a super(props) call.
 
-    Now weâ€™ll change the Squareâ€™s render method to display the current stateâ€™s value when clicked:
+    Now we'll change the Square's render method to display the current state's value when clicked:
 
  2) Update code to set state instead of generic alert calls, with below steps:
     - Replace this.props.value with this.state.value inside the <button> tag.
@@ -154,15 +155,15 @@ and fill it with an â€œXâ€� mark. To â€œrememberâ€� things, co
 
 How to know the current state of each square in the board?
 ----------------------------------------------------------
-In ticTacToe, in order to allow the second player, we need to know the value in the previous entry(in teh square)
+In ticTacToe, in order to allow the second player, we need to know the value in the previous entry(in the square)
 The only way to manage that would be to know the values in each square, as and when they are clicked.
-In this project, we crate an array for the Board component with 9 Square initially, all initialised to null.
+In this project, we create an array for the Board component with 9 Square initially, all initialized to null.
 
-We can gradually populate the squared based on their index, as and when they are clicked.
+We can gradually populate the squares based on their index, as and when they are clicked.
 This way, we can keep track of squares that are already filled, along with their location(Index).
 
 1) Initialize the BOARD component with null Squares, hence, also need a state(eventualy a constructor as well)
-   variable to hold the array:
+   variable(say 'squares') to hold the array:
     ************
         class Board extends React.Component {
           constructor(props) {
